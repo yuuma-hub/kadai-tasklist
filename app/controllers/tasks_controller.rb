@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @task = Task.all
+    @tasks = Task.all
   end
 
   def show
@@ -40,15 +40,16 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @message = Message.find(params[:id])
-    @message.destroy
+    @task = Task.find(params[:id])
+    @task.destroy
 
-    flash[:success] = 'Message は正常に削除されました'
+    flash[:success] = 'タスクは正常に削除されました'
     redirect_to tasks_url
   end
-end
-
+  
   private
+  
+end
   
   def task_params
     params.require(:task).permit(:content)
